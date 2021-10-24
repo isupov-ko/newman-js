@@ -69,3 +69,4 @@ docker run --rm -it -v c:\temp\postman:/etc/newman -t postman/newman:extra-cli /
 
 docker build [OPTIONS]
 docker build -t postman/newman:extra-cli --build-arg NEWMAN_VERSION="5.3.0" .
+
