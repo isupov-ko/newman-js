@@ -1,0 +1,63 @@
+{
+	"info": {
+		"_postman_id": "887e7570-4ecc-477b-af60-d47a55f084eb",
+		"name": "super_collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "FIO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 793d2830a6360a1569c8e7b9dd1afeb2f57ffa77",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"query\": \"А\",\r\n\"gender\": \"MALE\",\r\n\"parts\": [\"NAME\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/fio",
+					"protocol": "https",
+					"host": [
+						"suggestions",
+						"dadata",
+						"ru"
+					],
+					"path": [
+						"suggestions",
+						"api",
+						"4_1",
+						"rs",
+						"suggest",
+						"fio"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
