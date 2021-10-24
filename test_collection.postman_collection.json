@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "9a9411c3-3c65-4afe-803a-c54b7235fcba",
+		"name": "test_collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ya.ru",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 500\", function () {\r",
+							"    pm.response.to.have.status(500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "my-header",
+						"value": "my-value",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "ya.ru",
+					"host": [
+						"ya",
+						"ru"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

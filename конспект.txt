@@ -1,0 +1,71 @@
+https://badcode.ru/docker-tutorial-dlia-novichkov-rassmatrivaiem-docker-tak-iesli-by-on-byl-ighrovoi-pristavkoi/
+
+скачиваем образ из репозитория Dockerhub.com
+docker pull ubuntu:18.10
+
+просмотр скачанных образов
+docker images
+
+запуска контейнера
+https://docs.docker.com/engine/reference/commandline/run/
+docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+    [OPTIONS] 
+        --rm удалит контейнер после того как образ отработал
+    [COMMAND] опциональная команды, которая выполнится внутри контейнера>
+
+docker run ubuntu:18.10 echo 'hello from ubuntu'
+docker run --rm ubuntu:18.10 echo 'hello from ubuntu by Isupov'
+docker run -t -i --privileged ubuntu:18.10 bash 
+
+сапсок запущенных контейнеров (работают в данный момент)
+docker ps
+
+список всех контейнеров без исключения
+docker ps -a
+
+запуск контейнера
+docker start df916bc0e383
+видим что контейнер исполняется
+docker ps
+
+exec позволяет выполнить команду внутри запущенного контейнера
+docker exec -t -i --privileged df916bc0e383 bash
+
+
+docker ps -a               # просмотрим список активных контейнеров 
+docker stop df916bc0e383   # остановим активный контейнер
+docker rm df916bc0e383     # удалим контейнер
+
+создадим образ из докер-файла Dockerfile из текущего каталога
+docker build . --tag my_image_name
+запустим созданный образ
+docker run my_image_name
+
+
+монтирование локального каталога в контейнер
+docker run -v <DIRECTORY>:<CONTAINER_DIRECTORY> ...
+docker run -it -v C:\projects\docker-example\cli:/mounted  ubuntu:18.10 /bin/bash
+
+
+Docker Volumes
+возможно с их помощю будет удобно передавать состояние БД в разные контейнеры
+
+https://slurm.io/tpost/i5ikrm9fj1-hranenie-dannih-v-docker
+В Docker есть несколько способов хранения данных. Наиболее распространенные:
+тома хранения данных (docker volumes),
+монтирование каталогов с хоста (bind mount).
+
+
+docker run --rm -v c:\temp\postman:/etc/newman -t postman/newman run test_collection.postman_collection.json
+docker run --rm --entrypoint /bin/bash -v c:\temp\postman:/etc/newman -t postman/newman ls
+
+--entrypoint
+
+docker run -v  c:\temp\postman:/etc/newman -t postman/newman:extra-cli ls
+docker run --rm -v c:\temp\postman:/etc/newman -t postman/newman:extra-cli node newman_run.js
+
+--подключаемя к консоли в контейнере
+docker run --rm -it -v c:\temp\postman:/etc/newman -t postman/newman:extra-cli /bin/ash
+
+docker build [OPTIONS]
+docker build -t postman/newman:extra-cli --build-arg NEWMAN_VERSION="5.3.0" .
