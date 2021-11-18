@@ -8,10 +8,12 @@ console.log ('collection_name = ' + collection_name);
 //     reporters: 'cli'
 // })
 
+// https://www.npmjs.com/package/newman#using-newman-as-a-library
+// run newman as library
 newman.run({
     collection: require(collection_name),
     reporters: 'cli'
-    
+
 }).on('request', function (error, args) {
     console.log("\n---request headers");
     args.request.headers.members.forEach(function(item, i) {
